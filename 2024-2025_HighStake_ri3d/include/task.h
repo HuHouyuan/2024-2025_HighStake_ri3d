@@ -46,7 +46,10 @@ int HybridLocomotion(){
             RB.spin(fwd, (control_x - Ch1)*120, vex::voltageUnits::mV);
             RF.spin(fwd, (-control_x - Ch1)*120, vex::voltageUnits::mV);
         } else {
-            // distribute power between the x-drive wheels and linear wheels to maximize velocity
+            /* 
+            integrate the velocity-vector of the x-drive wheels and linear wheels and set 
+            appropriate power to the motor to maximize locomotion velocity
+            */
             solve_x = (2 * xdrive_exp_int) / (direction_slope - xdrive_exp_slope);
             solve_y = xdrive_exp_slope * solve_x + xdrive_exp_int;
             
